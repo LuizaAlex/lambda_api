@@ -43,6 +43,7 @@
     ],
     "resources": {
       "/hello": {
+        "enable_cors": false,
         "GET": {
           "integration_type": "lambda",
           "lambda_name": "hello_world",
@@ -51,15 +52,9 @@
           "method_request_parameters": {},
           "integration_request_body_template": {},
           "default_error_pattern": true,
+          "api_key_required": false,
           "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "responses": [
-            {
-              "status_code": "200",
-              "response_templates": {
-                "application/json": "{\"message\": \"Hello from Lambda\"}"
-              }
-            }
-          ]
+         
         }
       }
     }

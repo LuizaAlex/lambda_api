@@ -18,10 +18,19 @@ import java.util.Map;
 public class HelloWorld implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
-	Map<String, Object> resultMap = new HashMap<>();
-    resultMap.put("statusCode", 200);
-    resultMap.put("body", "{\"message\":\"Hello from Lambda\"}");
-    resultMap.put("headers", Collections.singletonMap("Content-Type", "application/json"));
-    return resultMap;
-	}
+		Map<String, Object> responseMap = new HashMap<>();
+        
+      
+        responseMap.put("statusCode", 200);
+
+     
+        responseMap.put("headers", Collections.singletonMap("Content-Type", "application/json"));
+        
+     
+        Map<String, String> bodyMap = new HashMap<>();
+        bodyMap.put("message", "Hello from Lambda");
+        responseMap.put("body", bodyMap);
+
+   
+        return responseMap;}
 }

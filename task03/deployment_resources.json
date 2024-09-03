@@ -53,7 +53,7 @@
           "integration_request_body_template": {},
           "default_error_pattern": true,
           "api_key_required": false,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
+          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES"
          
         }
       }

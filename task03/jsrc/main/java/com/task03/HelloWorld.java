@@ -13,24 +13,26 @@ import java.util.Map;
     lambdaName = "hello_world",
 	roleName = "hello_world-role",
 	isPublishVersion = false,
+
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 public class HelloWorld implements RequestHandler<Object, Map<String, Object>> {
 
+	@Override
 	public Map<String, Object> handleRequest(Object request, Context context) {
-		Map<String, Object> responseMap = new HashMap<>();
-        
-      
-        responseMap.put("statusCode", 200);
+		Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("statusCode", 200);
+        responseBody.put("message", "Hello from Lambda");
 
-     
-        responseMap.put("headers", Collections.singletonMap("Content-Type", "application/json"));
-        
-     
-        Map<String, String> bodyMap = new HashMap<>();
-        bodyMap.put("message", "Hello from Lambda");
-        responseMap.put("body", bodyMap);
+        // Convert the response body map to JSON string
+        String bodyJson = "{\"statusCode\":" + responseBody.get("statusCode") + ", \"message\":\"" + responseBody.get("message") + "\"}";
 
-   
-        return responseMap;}
+        // Construct the result map with status code, body, and headers
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("statusCode", 200);
+        resultMap.put("body", bodyJson);
+        resultMap.put("headers", Collections.singletonMap("Content-Type", "application/json"));
+
+		return resultMap;
+	}
 }
